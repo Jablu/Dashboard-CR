@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prototype1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="Assets\CSS\myStyleSheet.css" rel="stylesheet" />
+	<style>
+			* {
+			box-sizing: border-box;
+		}
+
+		/* Create two equal myColumns that floats next to each other */
+		.myColumn {
+			
+			float: left;
+			min-height:720px;
+			padding: 10px;
+			box-shadow: 0 2px 6px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.24);
+			transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+			background-color:#fff;
+			height: 300px; /* Should be removed. Only for demonstration */
+		}
+
+		/* Clear floats after the myColumns */
+		.myBody:after {
+			content: "";
+			display: table;
+			clear: both;
+			
+		}
+
+		/* Responsive layout - makes the two myColumns stack on top of each other instead of next to each other */
+		@media screen and (max-width: 1200px) {
+			.myColumn {
+				width: 100%;
+			}
+			#column1{
+				width:100%;
+			}
+			#column2{
+				margin-top:10px;
+				width:100%;
+			}
+		}
+	</style>
+	<script type="text/javascript" src="myChart.js"></script>
+    <script type="text/javascript">
+      
+	  google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+		var a = 115;
+		var x = 777;
+		var s = new Date();
+		
+        var data = google.visualization.arrayToDataTable([
+          ['Date', 'Total Order', 'Completed On Time', 'Started But Not Finished', 'Should Have Been Started'],
+          ['7 March',36, 12, 9, 3],
+		  ['8 March',22, 13, 7, 6],
+		  ['9 March',24, 14, 10, 4],
+		  ['10 March',20, 10, 4, 2],
+		  ['11 March',14, 9, 5, 4],
+          ['Yesterday',23, 22, 3, 9],
+          ['Today',26, 11, 1, 4],
+		  ['Weekly Average',21	, 13, 6, 9],
+        ]);
+
+        var options = {
+          chart: {
+            title: 'Daily Order Progress',
+            subtitle: 'Basic finish of production order compared to actual finish date',
+          }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+		
+		
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+    </script>
+	
+</head>
+<body>
+
+    <div class="myHeader"> 
+        <!--KONE : Prototype 1-->
+		<img src="Assets\Images\kone_icon2.png" style="width:60px;margin-top:3px">
+    </div>
+	<!--<div class="myHeadeInfo">
+	
+		Jhon Simmons
+	
+		
+	</div>
+	-->
+	
+	
+	<div class="myBody" >
+		<div class="myColumn" id="column1" >
+		
+					<label class="myFormLabel" style="font-size:22px;">Give Mock Data </label>
+					<br />
+					<br />
+                    <br />
+                    <label for="bfd" class="myFormLabel">Basic Finish Date Of Production Order (Today):</label><br />
+                    <input type="number" id="bfd" class="myFormInput" name="textNum"/><br />
+
+                    <br />
+                    <label for="afd" class="myFormLabel">Actual Finish Date Of Production Order (Today):</label><br />
+                    <input type="number" id="afd" class="myFormInput" name="textName"/><br />
+                    
+                    <br />
+                    <label for="bfdy" class="myFormLabel">Basic Finish Date Of Production Order (Yesterday):</label><br />
+                    <input type="number" id="bfdy" class="myFormInput" name="textData"/><br />
+					
+                    <br />
+                    <label for="afdy" class="myFormLabel">Actual Finish Date Of Production Order (Yesterday):</label><br />
+                    <input type="number" id="afdy" class="myFormInput" name="textData"/><br />
+
+					<br />
+                    <label for="bfda" class="myFormLabel">Basic Finish Date Of Production Order (Anotherday):</label><br />
+                    <input type="number" id="bfda" class="myFormInput" name="textData"/><br />
+					
+                    <br />
+                    <label for="afda" class="myFormLabel">Actual Finish Date Of Production Order (Anotherday):</label><br />
+                    <input type="number" id="afda" class="myFormInput" name="textData"/><br />
+					
+                    <br />
+                    <!--<button type="submit" class="myGoButton" onclick="checkData()">Submit</button>-->
+                    
+		
+	</div>
+  
+	<div class="myColumn" id="column2" >
+	<label class="myFormLabel" style="font-size:22px;">Sample Dashboard (OPERATION STATUS)</label>
+					<br />
+                    <br />
+		<div id="columnchart_material"></div>
+		
+	</div>
+	</div>
+	
+</body>
+</html>

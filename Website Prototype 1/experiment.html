@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Experiment Frame</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="Assets\CSS\myStyleSheetExperimental.css" rel="stylesheet" />
+	<script src="zingchart.min.js"></script>
+	<script type="text/javascript" src="myChart.js"></script>
+	<style>
+			* {
+			box-sizing: border-box;
+		}
+
+		/* Create two equal myColumns that floats next to each other */
+		.myColumn {
+			
+			float: left;
+			min-height:380px;
+			padding: 10px;
+			box-shadow: 0 2px 6px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.24);
+			transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+			background-color:#fff;
+			/* Should be removed. Only for demonstration */
+		}
+
+		/* Clear floats after the myColumns */
+		.myBody:after {
+			content: "";
+			display: table;
+			clear: both;
+			
+		}
+
+		/* Responsive layout - makes the two myColumns stack on top of each other instead of next to each other */
+		@media screen and (max-width: 1200px) {
+			.myColumn {
+				width: 100%;
+			}
+			#column1{
+				width:100%;
+			}
+			#column2{
+				margin-top:10px;
+				width:100%;
+			}	
+		}
+	</style>
+	
+	<script type="text/javascript">
+	
+	
+      google.charts.load('current', {'packages':['corechart']});
+	  google.charts.load('current', {'packages':['gauge']});
+		google.charts.load("current", {'packages':["corechart"]});
+      // Draw the pie chart for Sarah's pizza when Charts is loaded.
+      google.charts.setOnLoadCallback(drawPendingChart);
+
+      // Draw the pie chart for the Anthony's pizza when Charts is loaded.
+      google.charts.setOnLoadCallback(drawAnthonyChart);
+	  
+		// Draw the pie chart for the Anthony's pizza when Charts is loaded.
+	  <!--google.charts.setOnLoadCallback(drawBarChart);-->
+	  
+    function drawPendingChart() {
+
+        // Create the data table for Sarah's pizza.
+        
+        var data = google.visualization.arrayToDataTable([
+          ['Pending Operation', 'Value'],
+          ['WC1', 11],
+          ['WC2', 20],
+          ['PSE3', 17],
+          ['VFE', 11],
+          ['DDE3', 48],
+          ['SAAD', 13],
+          ['SDA', 11],
+          ['SAD2', 24],
+          ['SAD4', 95],
+          ['PSE3', 17],
+          ['VFE', 11],
+          ['DDE3', 48],
+          ['SAAD', 13],
+        ]);
+        var options = {
+          width: 1000, height: 180,
+          redFrom: 75, redTo: 100,
+          yellowFrom:40, yellowTo: 75,
+          minorTicks: 5
+        };
+
+        // Instantiate and draw the chart for Sarah's pizza.
+        var chart = new google.visualization.Gauge(document.getElementById('Pending_Chart_Div'));
+        chart.draw(data, options);
+      }
+    function drawAnthonyChart() {
+        // Create the data table for Anthony's pizza.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', 'Slices');
+        data.addRows([
+          ['Mushrooms', 2],
+          ['Onions', 2],
+          ['Olives', 2],
+          ['Zucchini', 0],
+          ['Pepperoni', 3]
+        ]);
+
+        // Set options for Anthony's pie chart.
+        var options = {title:'How Much Pizza Anthony Ate Last Night',
+                       width:400,
+                       height:300};
+
+        // Instantiate and draw the chart for Anthony's pizza.
+        var chart = new google.visualization.PieChart(document.getElementById('Anthony_chart_div'));
+        chart.draw(data, options);
+      }
+	google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ['Date', 'Operation Completed', 'Operation On Progress', 'Operation Not Started',  { role: 'annotation' } ],
+		['17 March', 20, 10, 5, ''],
+		['Yesterday', 13, 2, 9, ''],
+		['Today', 9, 13, 17, '']
+        
+      ]);
+
+      var options = {
+        width: 840,
+        height: 200,
+		colors: ['#73AA24','#FFB900','#E81123'],
+        legend: { position: 'top', maxLines: 3 },
+        bar: { groupWidth: '75%' },
+		bars: 'vertical',
+        isStacked: true
+      };
+
+      var view = new google.visualization.DataView(data);
+      
+
+      var chart = new google.visualization.BarChart(document.getElementById("barchart_values"));
+      chart.draw(view, options);
+  }
+    </script>
+	
+	
+	<script type="text/javascript">
+	
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Period', 'Due Completion', 'Completed'],
+          ['This Month', 1000, 600],
+          ['This Week', 200, 22],
+          ['Today', 23, 7],
+        ]);
+
+        var options = {
+			colors: ['#FFB900','#73AA24','#FFB900','#E81123'],
+			legend: { position: 'top', maxLines: 3 },
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+    </script> 
+	
+  <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Logged In',     11],
+          ['On Leave',      2],
+		  ['Absent',      2],
+        ]);
+		var data1 = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Logged In',     20],
+          ['On Leave',      2],
+		  ['Absent',      22],
+        ]);
+		var data2 = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Logged In',     44],
+          ['On Leave',      2],
+		  ['Absent',      4],
+        ]);
+		var data3 = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Logged In',     56],
+          ['On Leaves',      7],
+		  ['Absent',      25],
+        ]);
+		
+
+        var options = {
+          colors: ['#73AA24','#FFB900','#E81123'],
+		  legend: {position: 'none'}
+
+
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+		var chart1 = new google.visualization.PieChart(document.getElementById('piechart1'));
+        var chart2 = new google.visualization.PieChart(document.getElementById('piechart2'));
+		var chart3 = new google.visualization.PieChart(document.getElementById('piechart3'));
+		chart.draw(data, options);
+        chart1.draw(data1, options);
+		chart2.draw(data2, options);
+        chart3.draw(data3, options);
+		
+      }
+    </script>
+	
+	</head>
+
+<body>
+
+    
+	
+	
+	<div class="myDashboard">
+		
+		
+		<div class="myBody" >
+			<div class="myColumn" id="column1" >
+						<label class="myFormLabel" >Completion On Time</label>
+						<br />
+						<br />
+						<div id="columnchart_material" style="height: 420px"></div>
+			</div>
+			<div class="myColumn" id="column2" >
+							<div class="firstRow" style="box-shadow: 0 .5px 1px rgba(0,0,0,0.12), 0 .5px 1px rgba(0,0,0,0.24);">
+			
+			<label class="myFormLabel">Operation Progress</label>
+			<br />
+			
+					<div id="barchart_values" style="width: 100%;"></div>
+			</div>
+							<div class="firstRow" style="box-shadow: 0 .5px 1px rgba(0,0,0,0.12), 0 .5px 1px rgba(0,0,0,0.24);" >
+			
+							<label class="myFormLabel">Employee Logged In</label>
+							<br />
+							
+				<div class="row">
+				  <div class="column" style="background-color:#fff;width:25%;height:100%;">
+				  
+							<div id="piechart" style="width: 200px; ">
+							</div>
+				  </div>
+				  
+				  <div class="column" style="background-color:#fff;width:24%;height:100%">
+				  
+							<div id="piechart1" style="width: 200px; "></div>
+				  </div>
+				  <div class="column" style="background-color:#fff;width:24%;height:100%">
+				  
+							<div id="piechart2" style="width: 200px; ">
+							</div>
+				  </div>
+				  
+				  <div class="column" style="background-color:#fff;width:25%;height:100%">
+				  
+							<div id="piechart3" style="width: 200px; "></div>
+				  </div>
+				  </div>
+							</div>
+							
+			</div>
+		
+		<div class="firstRow" id="bottomRow">
+			<br />
+			<br />
+			<label class="myFormLabel">Pending Order</label>
+			<br />
+			<br />
+			
+							
+				<div class="row">
+				  <div class="column" style="background-color:#fff;">
+					<div id='myChart'></div>
+						<script>
+						  window.feed = function(callback) {
+						  var tick = {};
+						  tick.plot0 = Math.ceil(350 + (Math.random() * 500));
+						  callback(JSON.stringify(tick));
+						};
+						 
+						var myConfig = {
+							type: "gauge",
+							globals: {
+							  fontSize: 15
+							},
+							plotarea:{
+							  marginTop:75
+							},
+							plot:{
+							  size:'100%',
+							  valueBox: {
+								placement: 'center',
+								text:'%v', //default
+								fontSize:15,
+								rules:[
+								  {
+									rule: '%v <= 40',
+									text: '%v<br>WC1'
+								  },
+								  {
+									rule: '%v < 40 && %v > 50',
+									text: '%v<br>WC1'
+								  },
+								  {
+									rule: '%v < 50 && %v > 60',
+									text: '%v<br>WC1'
+								  } 
+								]
+							  }
+							},
+						  tooltip:{
+							borderRadius:1
+						  },
+							scaleR:{
+							  aperture:210,
+							  minValue:0,
+							  maxValue:75,
+							  step:5,
+							  center:{
+								visible:false
+							  },
+							  tick:{
+								visible:false
+							  },
+							  item:{
+								offsetR:0,
+								rules:[
+								  {
+									rule:'%i == 9',
+									offsetX:0
+								  }
+								]
+							  },
+							  labels:['0','10','20','','','','60','75'],
+							  ring:{
+								size:20,
+								rules:[
+								  {
+									rule:'%v <= 40',
+									backgroundColor:'#73AA24'
+								  },
+								  {
+									rule:'%v > 40 && %v < 50',
+									backgroundColor:'#FFB900'
+								  },
+								  {
+									rule:'%v >= 50 && %v < 60',
+									backgroundColor:'#F7630C'
+								  },
+								  {
+									rule:'%v >= 60',
+									backgroundColor:'#E81123'
+								  }      
+								]
+							  }
+							},
+
+							series : [
+								{
+								values : [22], // starting value
+								backgroundColor:'black',
+								indicator:[5,5,2,2,0.55],
+								animation:{  
+								effect:2,
+								method:1,
+								sequence:4,
+								speed: 150
+							 },
+								}
+							]
+						};
+						 
+						zingchart.render({ 
+							id : 'myChart', 
+							data : myConfig, 
+							height: 240, 
+							width: '100%'
+						});
+						</script>
+				  </div>
+				  <div class="column" style="background-color:#fff;">
+					<div id='myChart1'></div>
+						<script>
+						  window.feed = function(callback) {
+						  var tick = {};
+						  tick.plot0 = Math.ceil(350 + (Math.random() * 500));
+						  callback(JSON.stringify(tick));
+						};
+						 
+						var myConfig = {
+							type: "gauge",
+							globals: {
+							  fontSize: 15
+							},
+							plotarea:{
+							  marginTop:75
+							},
+							plot:{
+							  size:'100%',
+							  valueBox: {
+								placement: 'center',
+								text:'WC2', //default
+								fontSize:15,
+								rules:[
+								  {
+									rule: '%v >= 40',
+									text: '%v<br>WC2'
+								  },
+								  {
+									rule: '%v < 40 && %v > 50',
+									text: '%v<br>WC2'
+								  },
+								  {
+									rule: '%v < 50 && %v > 60',
+									text: '%v<br>WC2'
+								  } 
+								]
+							  }
+							},
+						  tooltip:{
+							borderRadius:1
+						  },
+							scaleR:{
+							  aperture:210,
+							  minValue:0,
+							  maxValue:75,
+							  step:5,
+							  center:{
+								visible:false
+							  },
+							  tick:{
+								visible:false
+							  },
+							  item:{
+								offsetR:0,
+								rules:[
+								  {
+									rule:'%i == 9',
+									offsetX:0
+								  }
+								]
+							  },
+							  labels:['0','10','20','','','','60','75'],
+							  ring:{
+								size:20,
+								rules:[
+								  {
+									rule:'%v <= 40',
+									backgroundColor:'#73AA24'
+								  },
+								  {
+									rule:'%v > 40 && %v < 50',
+									backgroundColor:'#FFB900'
+								  },
+								  {
+									rule:'%v >= 50 && %v < 60',
+									backgroundColor:'#F7630C'
+								  },
+								  {
+									rule:'%v >= 60',
+									backgroundColor:'#E81123'
+								  }      
+								]
+							  }
+							},
+
+							series : [
+								{
+								values : [60], // starting value
+								backgroundColor:'black',
+								indicator:[5,5,2,2,0.55],
+								animation:{  
+								effect:2,
+								method:1,
+								sequence:4,
+								speed: 150
+							 },
+								}
+							]
+						};
+						 
+						zingchart.render({ 
+							id : 'myChart1', 
+							data : myConfig, 
+							height: 240, 
+							width: '100%'
+						});
+						</script>
+					
+				  </div>
+				</div>
+				  <div class="column" style="background-color:#fff;">
+					<div id='myChart2'></div>
+						<script>
+						  window.feed = function(callback) {
+						  var tick = {};
+						  tick.plot0 = Math.ceil(350 + (Math.random() * 500));
+						  callback(JSON.stringify(tick));
+						};
+						 
+						var myConfig = {
+							type: "gauge",
+							globals: {
+							  fontSize: 15
+							},
+							plotarea:{
+							  marginTop:75
+							},
+							plot:{
+							  size:'100%',
+							  valueBox: {
+								placement: 'center',
+								text:'WC3', //default
+								fontSize:15,
+								rules:[
+								  {
+									rule: '%v >= 40',
+									text: '%v<br>WC3'
+								  },
+								  {
+									rule: '%v < 40 && %v > 50',
+									text: '%v<br>WC3'
+								  },
+								  {
+									rule: '%v < 50 && %v > 60',
+									text: '%v<br>WC3'
+								  } 
+								]
+							  }
+							},
+						  tooltip:{
+							borderRadius:1
+						  },
+							scaleR:{
+							  aperture:210,
+							  minValue:0,
+							  maxValue:75,
+							  step:5,
+							  center:{
+								visible:false
+							  },
+							  tick:{
+								visible:false
+							  },
+							  item:{
+								offsetR:0,
+								rules:[
+								  {
+									rule:'%i == 9',
+									offsetX:0
+								  }
+								]
+							  },
+							  labels:['0','10','20','','','','60','75'],
+							  ring:{
+								size:20,
+								rules:[
+								  {
+									rule:'%v <= 40',
+									backgroundColor:'#73AA24'
+								  },
+								  {
+									rule:'%v > 40 && %v < 50',
+									backgroundColor:'#FFB900'
+								  },
+								  {
+									rule:'%v >= 50 && %v < 60',
+									backgroundColor:'#F7630C'
+								  },
+								  {
+									rule:'%v >= 60',
+									backgroundColor:'#E81123'
+								  }      
+								]
+							  }
+							},
+
+							series : [
+								{
+								values : [50], // starting value
+								backgroundColor:'black',
+								indicator:[5,5,2,2,0.55],
+								animation:{  
+								effect:2,
+								method:1,
+								sequence:4,
+								speed: 150
+							 },
+								}
+							]
+						};
+						 
+						zingchart.render({ 
+							id : 'myChart2', 
+							data : myConfig, 
+							height: 240, 
+							width: '100%'
+						});
+						</script>
+				  </div>
+				  <div class="column" style="background-color:#fff;">
+					<div id='myChart3'></div>
+						<script>
+						  window.feed = function(callback) {
+						  var tick = {};
+						  tick.plot0 = Math.ceil(350 + (Math.random() * 500));
+						  callback(JSON.stringify(tick));
+						};
+						 
+						var myConfig = {
+							type: "gauge",
+							globals: {
+							  fontSize: 15
+							},
+							plotarea:{
+							  marginTop:75
+							},
+							plot:{
+							  size:'100%',
+							  valueBox: {
+								placement: 'center',
+								text:'%v<br>WC4', //default
+								fontSize:15,
+								rules:[
+								  {
+									rule: '%v >= 40',
+									text: '%v<br>WC3'
+								  },
+								  {
+									rule: '%v < 40 && %v > 50',
+									text: '%v<br>WC3'
+								  },
+								  {
+									rule: '%v < 50 && %v > 60',
+									text: '%v<br>WC3'
+								  } 
+								]
+							  }
+							},
+						  tooltip:{
+							borderRadius:1
+						  },
+							scaleR:{
+							  aperture:210,
+							  minValue:0,
+							  maxValue:75,
+							  step:5,
+							  center:{
+								visible:false
+							  },
+							  tick:{
+								visible:false
+							  },
+							  item:{
+								offsetR:0,
+								rules:[
+								  {
+									rule:'%i == 9',
+									offsetX:0
+								  }
+								]
+							  },
+							  labels:['0','10','20','','','','60','75'],
+							  ring:{
+								size:20,
+								rules:[
+								  {
+									rule:'%v <= 40',
+									backgroundColor:'#73AA24'
+								  },
+								  {
+									rule:'%v > 40 && %v < 50',
+									backgroundColor:'#FFB900'
+								  },
+								  {
+									rule:'%v >= 50 && %v < 60',
+									backgroundColor:'#F7630C'
+								  },
+								  {
+									rule:'%v >= 60',
+									backgroundColor:'#E81123'
+								  }      
+								]
+							  }
+							},
+
+							series : [
+								{
+								values : [2], // starting value
+								backgroundColor:'black',
+								indicator:[5,5,2,2,0.55],
+								animation:{  
+								effect:2,
+								method:1,
+								sequence:4,
+								speed: 150
+							 },
+								}
+							]
+						};
+						 
+						zingchart.render({ 
+							id : 'myChart3', 
+							data : myConfig, 
+							height: 240, 
+							width: '100%'
+						});
+						</script>
+					
+				  </div>
+				  <div class="column" style="background-color:#fff;">
+					
+						<div id='myChart4'></div>
+						<script>
+						  window.feed = function(callback) {
+						  var tick = {};
+						  tick.plot0 = Math.ceil(350 + (Math.random() * 500));
+						  callback(JSON.stringify(tick));
+						};
+						 
+						var myConfig = {
+							type: "gauge",
+							globals: {
+							  fontSize: 15
+							},
+							plotarea:{
+							  marginTop:75
+							},
+							plot:{
+							  size:'100%',
+							  valueBox: {
+								placement: 'center',
+								text:'%v<br>WC4', //default
+								fontSize:15,
+								rules:[
+								  {
+									rule: '%v >= 40',
+									text: '%v<br>WC4'
+								  },
+								  {
+									rule: '%v < 40 && %v > 50',
+									text: '%v<br>WC4'
+								  },
+								  {
+									rule: '%v < 50 && %v > 60',
+									text: '%v<br>WC4'
+								  } 
+								]
+							  }
+							},
+						  tooltip:{
+							borderRadius:1
+						  },
+							scaleR:{
+							  aperture:210,
+							  minValue:0,
+							  maxValue:75,
+							  step:5,
+							  center:{
+								visible:false
+							  },
+							  tick:{
+								visible:false
+							  },
+							  item:{
+								offsetR:0,
+								rules:[
+								  {
+									rule:'%i == 9',
+									offsetX:0
+								  }
+								]
+							  },
+							  labels:['0','10','20','','','','60','75'],
+							  ring:{
+								size:20,
+								rules:[
+								  {
+									rule:'%v <= 40',
+									backgroundColor:'#73AA24'
+								  },
+								  {
+									rule:'%v > 40 && %v < 50',
+									backgroundColor:'#FFB900'
+								  },
+								  {
+									rule:'%v >= 50 && %v < 60',
+									backgroundColor:'#F7630C'
+								  },
+								  {
+									rule:'%v >= 60',
+									backgroundColor:'#E81123'
+								  }      
+								]
+							  }
+							},
+
+							series : [
+								{
+								values : [29], // starting value
+								backgroundColor:'black',
+								indicator:[5,5,2,2,0.55],
+								animation:{  
+								effect:2,
+								method:1,
+								sequence:4,
+								speed: 150
+							 },
+								}
+							]
+						};
+						 
+						zingchart.render({ 
+							id : 'myChart4', 
+							data : myConfig, 
+							height: 240, 
+							width: '100%'
+						});
+						</script>
+					
+				  </div>
+				  <div class="column" style="background-color:#fff;">
+					
+						<div id='myChart5'></div>
+						<script>
+						  window.feed = function(callback) {
+						  var tick = {};
+						  tick.plot0 = Math.ceil(350 + (Math.random() * 500));
+						  callback(JSON.stringify(tick));
+						};
+						 
+						var myConfig = {
+							type: "gauge",
+							globals: {
+							  fontSize: 15
+							},
+							plotarea:{
+							  marginTop:75
+							},
+							plot:{
+							  size:'100%',
+							  valueBox: {
+								placement: 'center',
+								text:'%v<br>WC5', //default
+								fontSize:15,
+								rules:[
+								  {
+									rule: '%v >= 40',
+									text: '%v<br>WC5'
+								  },
+								  {
+									rule: '%v < 40 && %v > 50',
+									text: '%v<br>WC5'
+								  },
+								  {
+									rule: '%v < 50 && %v > 60',
+									text: '%v<br>WC5'
+								  } 
+								]
+							  }
+							},
+						  tooltip:{
+							borderRadius:1
+						  },
+							scaleR:{
+							  aperture:210,
+							  minValue:0,
+							  maxValue:75,
+							  step:5,
+							  center:{
+								visible:false
+							  },
+							  tick:{
+								visible:false
+							  },
+							  item:{
+								offsetR:0,
+								rules:[
+								  {
+									rule:'%i == 9',
+									offsetX:0
+								  }
+								]
+							  },
+							  labels:['0','10','20','','','','60','75'],
+							  ring:{
+								size:20,
+								rules:[
+								  {
+									rule:'%v <= 40',
+									backgroundColor:'#73AA24'
+								  },
+								  {
+									rule:'%v > 40 && %v < 50',
+									backgroundColor:'#FFB900'
+								  },
+								  {
+									rule:'%v >= 50 && %v < 60',
+									backgroundColor:'#F7630C'
+								  },
+								  {
+									rule:'%v >= 60',
+									backgroundColor:'#E81123'
+								  }      
+								]
+							  }
+							},
+
+							series : [
+								{
+								values : [65], // starting value
+								backgroundColor:'black',
+								indicator:[5,5,2,2,0.55],
+								animation:{  
+								effect:2,
+								method:1,
+								sequence:4,
+								speed: 150
+							 },
+								}
+							]
+						};
+						 
+						zingchart.render({ 
+							id : 'myChart5', 
+							data : myConfig, 
+							height: 240, 
+							width: '100%'
+						});
+						</script>
+					
+				  </div>
+				  <div class="column" style="background-color:#fff;">
+					<div id='myChart6'></div>
+						<script>
+						  window.feed = function(callback) {
+						  var tick = {};
+						  tick.plot0 = Math.ceil(350 + (Math.random() * 500));
+						  callback(JSON.stringify(tick));
+						};
+						 
+						var myConfig = {
+							type: "gauge",
+							globals: {
+							  fontSize: 15
+							},
+							plotarea:{
+							  marginTop:75
+							},
+							plot:{
+							  size:'100%',
+							  valueBox: {
+								placement: 'center',
+								text:'%v<br>WC6', //default
+								fontSize:15,
+								rules:[
+								  {
+									rule: '%v >= 40',
+									text: '%v<br>WC6'
+								  },
+								  {
+									rule: '%v < 40 && %v > 50',
+									text: '%v<br>WC6'
+								  },
+								  {
+									rule: '%v < 50 && %v > 60',
+									text: '%v<br>WC6'
+								  } 
+								]
+							  }
+							},
+						  tooltip:{
+							borderRadius:1
+						  },
+							scaleR:{
+							  aperture:210,
+							  minValue:0,
+							  maxValue:75,
+							  step:5,
+							  center:{
+								visible:false
+							  },
+							  tick:{
+								visible:false
+							  },
+							  item:{
+								offsetR:0,
+								rules:[
+								  {
+									rule:'%i == 9',
+									offsetX:0
+								  }
+								]
+							  },
+							  labels:['0','10','20','','','','60','75'],
+							  ring:{
+								size:20,
+								rules:[
+								  {
+									rule:'%v <= 40',
+									backgroundColor:'#73AA24'
+								  },
+								  {
+									rule:'%v > 40 && %v < 50',
+									backgroundColor:'#FFB900'
+								  },
+								  {
+									rule:'%v >= 50 && %v < 60',
+									backgroundColor:'#F7630C'
+								  },
+								  {
+									rule:'%v >= 60',
+									backgroundColor:'#E81123'
+								  }      
+								]
+							  }
+							},
+
+							series : [
+								{
+								values : [71], // starting value
+								backgroundColor:'black',
+								indicator:[5,5,2,2,0.55],
+								animation:{  
+								effect:2,
+								method:1,
+								sequence:4,
+								speed: 150
+							 },
+								}
+							]
+						};
+						 
+						zingchart.render({ 
+							id : 'myChart6', 
+							data : myConfig, 
+							height: 240, 
+							width: '100%'
+						});
+						</script>
+				  </div>
+				  
+			
+		</div>
+		
+			
+		</div>
+		
+	</div>
+	
+	
+</body>
+</html>

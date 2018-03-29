@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prototype2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="Assets\CSS\myStyleSheet.css" rel="stylesheet" />
+	<style>
+			* {
+			box-sizing: border-box;
+		}
+
+		/* Create two equal myColumns that floats next to each other */
+		.myColumn {
+			
+			float: left;
+			min-height:720px;
+			padding: 10px;
+			box-shadow: 0 2px 6px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.24);
+			transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+			background-color:#fff;
+			height: 300px; /* Should be removed. Only for demonstration */
+		}
+
+		/* Clear floats after the myColumns */
+		.myBody:after {
+			content: "";
+			display: table;
+			clear: both;
+			
+		}
+
+		/* Responsive layout - makes the two myColumns stack on top of each other instead of next to each other */
+		@media screen and (max-width: 1200px) {
+			.myColumn {
+				width: 100%;
+			}
+			#column1{
+				width:100%;
+			}
+			#column2{
+				margin-top:10px;
+				width:100%;
+			}
+		}
+	</style>
+	<script type="text/javascript" src="myChart.js"></script>
+    <script type="text/javascript">
+      
+	  google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+ google.charts.load('current', {packages:['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+    var oldData = google.visualization.arrayToDataTable([
+      ['Work Center', 'Strength'],
+      ['PS1', 2500],
+      ['CPG', 4200],
+      ['CF2', 2900],
+      ['CFE3', 6000],
+      ['SS2', 2563],
+      ['WC2', 5523],
+      ['WC3', 4255]
+    ]);
+
+    var newData = google.visualization.arrayToDataTable([
+      ['Work Center', 'Attending'],
+      ['PS1', 2200],
+      ['CPG', 4000],
+      ['CF2', 2652],
+      ['CFE3', 5475],
+      ['SS2', 2202],
+      ['WC2', 5002],
+      ['WC3', 4000]
+    ]);
+
+    var colChartBefore = new google.visualization.ColumnChart(document.getElementById('colchart_before'));
+    var colChartAfter = new google.visualization.ColumnChart(document.getElementById('colchart_after'));
+    var colChartDiff = new google.visualization.ColumnChart(document.getElementById('colchart_diff'));
+
+    var options = { legend: { position: 'top' } 
+					};
+
+    colChartBefore.draw(oldData, options);
+    colChartAfter.draw(newData, options);
+
+    var diffData = colChartDiff.computeDiff(oldData, newData);
+    colChartDiff.draw(diffData, options);
+  }
+    </script>
+	
+</head>
+<body>
+
+    <div class="myHeader"> 
+        <!--KONE : Prototype 1-->
+		<img src="Assets\Images\kone_icon.png" style="width:60px;margin-top:3px">
+    </div>
+
+	
+	
+	<div class="myBody" >
+		<div class="myColumn" id="column1" >
+		
+					<label class="myFormLabel" style="font-size:22px;">Give Mock Data </label>
+					<br />
+					<br />
+                    <br />
+                    <label for="bfd" class="myFormLabel">Basic Finish Date Of Production Order (Today):</label><br />
+                    <input type="number" id="bfd" class="myFormInput" name="textNum"/><br />
+
+                    <br />
+                    <label for="afd" class="myFormLabel">Actual Finish Date Of Production Order (Today):</label><br />
+                    <input type="number" id="afd" class="myFormInput" name="textName"/><br />
+                    
+                    <br />
+                    <label for="bfdy" class="myFormLabel">Basic Finish Date Of Production Order (Yesterday):</label><br />
+                    <input type="number" id="bfdy" class="myFormInput" name="textData"/><br />
+					
+                    <br />
+                    <label for="afdy" class="myFormLabel">Actual Finish Date Of Production Order (Yesterday):</label><br />
+                    <input type="number" id="afdy" class="myFormInput" name="textData"/><br />
+
+					<br />
+                    <label for="bfda" class="myFormLabel">Basic Finish Date Of Production Order (Anotherday):</label><br />
+                    <input type="number" id="bfda" class="myFormInput" name="textData"/><br />
+					
+                    <br />
+                    <label for="afda" class="myFormLabel">Actual Finish Date Of Production Order (Anotherday):</label><br />
+                    <input type="number" id="afda" class="myFormInput" name="textData"/><br />
+					
+                    <br />
+                    
+		
+	</div>
+  
+	<div class="myColumn" id="column2" >
+	<label class="myFormLabel" style="font-size:22px;">Sample Dashboard (EMPLOYEE LOGGED IN)</label>
+					<br />
+                    <br />
+		<span id='colchart_before' style='width: 45%; height: 250px; display: inline-block'></span>
+		<span id='colchart_after' style='width: 45%; height: 250px; display: inline-block'></span>
+		<span id='colchart_diff' style='width: 100%; height: 250px; display: inline-block'></span>
+		
+	</div>
+	</div>
+	
+</body>
+</html>

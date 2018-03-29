@@ -1,0 +1,23 @@
+Factory Manager level
+•	Daily COT (Completed On Time) Basic finish date of production order compared to actual finish date (Can we have weekly summary of cumulative COT within week axis)
+•	Daily Order Progress three sections operations completed on time, operations what should have been started and Operations which are started but not completed (Can we have weekly summary of cumulative figures within week axis)
+•	Qty of persons logged in to work centers 
+•	Qty of completed orders by material code Daily on week axis based on shifts
+
+
+
+Supervisor level (Can work centers be filtered by selection per supervisor?)
+•	Work center qty of not started operations based on scheduled start, qty of started operations, qty of completed operations 
+•	Qty of operators logged in work center, by clicking WS qty of logged in persons
+•	Qty of completed orders per material (Product hierarchy which is characteristic value add if not hitting performance can be also drill down as next level)
+
+
+
+Shopfloor worker level (Specific to work center where extracted) 
+•	List of operations not started in work center where previous operation is completed
+•	If picking list is existing for operation status of picking list (Not started, started, completed)
+
+Possibility to print current situation if possible
+
+
+-J-
